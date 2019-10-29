@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style></style>
+	<script src=helpers.js></script>
+</head>
+<body>
+	<input type="file">
+	<br>
+	<input id="pass" placeholder="Password">
+	<br>
+	<button id=enc>Encrypt</button>
+	<button id=dec>Decrypt</button>
+	<div></div>
+	<script src="encrypter.js"></script>
+	<script>
+		var text;
+		upload(obj('input'),t=>{
+			text = t;
+		});
+		obj('#enc').on('click',function(){
+			var p = obj('#pass');
+			if(p.value && text){
+				let res = encrypt(text,p.value);
+				obj('div').innerHTML = res;
+			} else {
+				alert('No File or Password');
+				p.focus();
+			}
+		});
+		obj('#dec').on('click',function(){
+			var p = obj('#pass');
+			if(p.value && text){
+				let res = decrypt(text,p.value);
+				obj('div').innerHTML = res;
+			} else {
+				alert('No File or Password');
+				p.focus();
+			}
+		})
+	</script>
+</body>
+</html>
